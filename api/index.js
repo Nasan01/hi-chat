@@ -6,6 +6,7 @@ const path = require("path")
 const connectDB = require("./config/db")
 
 const userRoute = require("./routes/userRoute")
+const messageRoute = require("./routes/messageRoute")
 
 const app = express()
 
@@ -20,10 +21,6 @@ app.use(express.json())
 app.use(cors())
 app.use(express.static(path.join(__dirname, "public")))
 
-
-app.use("/", (req, res) => {
-  res.json({ msg: "hello" })
-})
 
 const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`hi-chat API Backend Running On PORT ${PORT}`)
@@ -41,3 +38,9 @@ app.use(function (req, res, next) {
 
 // routes
 app.use("/api/v1/user", userRoute)
+app.use("/api/v1/message", messageRoute)
+
+
+app.use("/", (req, res) => {
+  res.json({ msg: "hello" })
+})

@@ -77,7 +77,54 @@ const getMessageFromConversation = (req, res) => {
     
 }
 
+const postPrivateMessage = (req, res) => {
+  let from = mongoose.Types.ObjectId(req.user._id)
+  let to = mongoose.Types.ObjectId(req.body.to)
+
+  Conversation.findOneAndUpdate(
+    {
+      recipients: {
+        $all: [
+          { $elemMatch: { $eq: from } },
+          { $elemMatch: { $eq: to } },
+        ]
+      }
+    },
+    {
+      recipients: [req.user._id, req.body.to],
+      lastMessage: req.body.body,
+      date: Date.now(),
+    },
+    { upsert: true, new: true, setDefaultsOnInsert: true },
+    function(err, conversation) {
+      if(err) {
+        console.log(err)
+        res.status(500).json({ message: "Failure !" })
+      } else {
+        let message = new Message({
+          conversation: conversation._id,
+          to: req.body.to,
+          from: req.user._id,
+          body: req.body.body
+        })
+
+        req.io.sockets.emit('messages', req.body.body)
+
+        message.save((err) => {
+          if(err) {
+            console.log(err)
+            res.status(500).json({ message: "Failure !" })
+          } else {
+            res.status(200).json({ message: "Success !", conversationId: conversation._id})
+          }
+        })
+      }
+    }
+  )
+}
+
 module.exports = {
   getConversationList,
-  getMessageFromConversation
+  getMessageFromConversation,
+  postPrivateMessage
 }

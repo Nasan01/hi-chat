@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const { Schema } = mongoose
 
 const MessageSchema = new Schema({
-  
+
   conversation: {
     type: mongoose.Types.ObjectId,
     ref: "conversations",
@@ -16,6 +16,11 @@ const MessageSchema = new Schema({
   from: {
     type: mongoose.Types.ObjectId,
     ref: "users"
+  },
+
+  body: {
+    type: String,
+    required: true
   },
 
   date: {

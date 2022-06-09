@@ -6,10 +6,11 @@ const User = require("../models/User")
 
 const signup = async (req, res) => {
   const { fullname, email, username, password } = req.body
-  const picture = req.file.filename
+  // const picture = req.file.filename
 
   try {
-    const user = new User({ fullname, email, username, password, picture })
+    // const user = new User({ fullname, email, username, password, picture })
+    const user = new User({ fullname, email, username, password })
     await user.save()
     return res.status(201).json({ msg: "User created successfully !" })
   } catch (error) {
@@ -55,13 +56,15 @@ const signin = async (req, res) => {
     }
 
     const token = await jwt.sign({ user: user[0] }, "avo1234", { expiresIn: "2d" })
+    const userSend = { 
+      _id: user[0]._id, 
+      name:user[0].fullname, 
+      username:user[0].name,
+      email: user[0].email,
+      token: `Bearer ${token}` 
+    }
     res.status(200).json({ 
-      user: { 
-        _id: user[0]._id, 
-        name:user[0].fullname, 
-        username:user[0].name,
-        email: user[0].email,
-        token: `Bearer ${token}` }
+      user: userSend
     })
   } catch (error) {
     console.log(error)
