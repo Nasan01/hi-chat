@@ -1,5 +1,9 @@
+<script>
+  import { RouterView } from "vue-router"
+</script>
+
 <template>
   <div>
-    <h1 class="text-6xl">Hello All</h1>
+    <RouterView />
   </div>
 </template>

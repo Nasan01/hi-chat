@@ -6,11 +6,11 @@ const User = require("../models/User")
 
 const signup = async (req, res) => {
   const { fullname, email, username, password } = req.body
-  // const picture = req.file.filename
+  const picture = req.file.filename
 
   try {
-    // const user = new User({ fullname, email, username, password, picture })
-    const user = new User({ fullname, email, username, password })
+    const user = new User({ fullname, email, username, password, picture })
+    // const user = new User({ fullname, email, username, password })
     await user.save()
     return res.status(201).json({ msg: "User created successfully !" })
   } catch (error) {
