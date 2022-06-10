@@ -59,7 +59,7 @@ const signin = async (req, res) => {
     const userSend = { 
       _id: user[0]._id, 
       name:user[0].fullname, 
-      username:user[0].name,
+      username:user[0].username,
       email: user[0].email,
       token: `Bearer ${token}` 
     }

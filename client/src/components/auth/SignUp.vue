@@ -2,7 +2,7 @@
 
 <template>
   <div class="min-h-screen md:grid md:grid-cols-3 bg-indigo-400">
-    <div class="md:col-span-2 md:flex md:flex-col">
+    <div class="md:col-span-2 md:flex md:flex-col p-5">
       <h1 class="mx-3 text-gray-300 text-3xl"><RouterLink to="/">hi-chaty</RouterLink></h1>
       <img src="@/assets/images/b01.svg" alt="signup" class="text-center" />
     </div>
