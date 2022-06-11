@@ -22,6 +22,7 @@ const getConversationList = (req, res) => {
       "recipientObj.__v": 0,
       "recipientObj.date": 0,
     })
+    .sort({ date: -1 })
     .exec((err, conversations) => {
       if(err) {
         console.log(err)

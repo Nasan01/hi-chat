@@ -69,6 +69,7 @@
           }
         }).then((res) => {
           this.setLastMessage();
+          this.body = "" // empty it after sending a message, 
         });
       },
       setLastMessage() {
