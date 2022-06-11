@@ -17,6 +17,15 @@ const store = createStore({
   mutations: {
     setLogged(state, payload) {
       state.user = payload
+    },
+    setLoggOut(state) {
+      state.user = {
+        _id: "",
+        name: "",
+        username: "",
+        token: "",
+        logged: false
+      }
     }
   },
 

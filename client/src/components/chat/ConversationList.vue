@@ -55,6 +55,10 @@
         socket.on("messages", (data) => this.newConversation = data)
       },
 
+      spliceLastMessage(messages) {
+        return messages.length <= 16 ? messages : messages.slice(0, 16) + "..."
+      }
+
     },
 
     mounted() {
@@ -84,7 +88,9 @@
         />
         <div class="w-4/5">
           <h3 class="m-2 h-4 rounded font-semibold">{{ handleRecipient(r.recipientObj).fullname }}</h3>
-          <p class="m-2 h-3 rounded-md text-gray-600">{{ r.lastMessage }}</p>
+          <p class="m-2 h-3 rounded-md text-gray-600">
+            {{  spliceLastMessage(r.lastMessage)}}
+          </p>
         </div>
       </RouterLink>
     </div>

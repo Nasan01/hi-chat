@@ -76,12 +76,18 @@ const signin = async (req, res) => {
 const getUsers = (req, res) => {
   User.find({ _id: {"$ne": req.user._id } }).then((users) => {
     res.json(users)
+  }).catch(err => {
+    console.log(err)
+    res.json(err)
   })
 }
 
 const findOneUser = (req, res) => {
   User.find({ _id: req.params.id }, { password: 0 }).then((user) => {
     res.json(user)
+  }).catch(err => {
+    console.log(err)
+    res.json(err)
   })
 }
 

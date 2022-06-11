@@ -94,13 +94,15 @@ import apiFetch from "../../config/axiosConfig"
             <p class="relative w-5 bottom-9 left-8 text-indigo-400"><i class="fa fa-lock"></i></p>
           </div>
           <div class="mx-2 mb-5 text-gray-400">
-            <input 
-              type="checkbox" 
-              name="rememberme" 
-              id="rememberme" 
-              class="pl-14 pr-3 py-3 ml-3 rounded-full outline-none m-2 checked:bg-indigo-400"
-            />
-            <label for="rememberme">Remember me</label>
+            <label for="rememberme">
+              <input 
+                type="checkbox" 
+                name="rememberme" 
+                id="rememberme" 
+                class="pl-14 pr-3 py-3 ml-3 rounded-full outline-none m-2 checked:bg-indigo-400"
+              />
+              Remember me
+            </label>
           </div>
           <div class="mx-2 mb-5">
             <button 
