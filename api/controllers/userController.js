@@ -26,10 +26,10 @@ const signup = async (req, res) => {
         console.log(picture + " file deleted !! cause there is an error");
       })
       if(error.keyPattern.email === 1){
-        return res.status(400).json({ error: "User with this email already exist !" , field: "email"})
+        return res.json({ error: "User with this email already exist !" , field: "email"})
       }
       if(error.keyPattern.username === 1) {
-        return res.status(400).json({ error: "User with this username already exist !" , field: "username"})
+        return res.json({ error: "User with this username already exist !" , field: "username"})
       }
     }
     res.json(error)
@@ -74,13 +74,20 @@ const signin = async (req, res) => {
 }
 
 const getUsers = (req, res) => {
-  User.find().then((users) => {
+  User.find({ _id: {"$ne": req.user._id } }).then((users) => {
     res.json(users)
+  })
+}
+
+const findOneUser = (req, res) => {
+  User.find({ _id: req.params.id }, { password: 0 }).then((user) => {
+    res.json(user)
   })
 }
 
 module.exports = {
   signup,
   signin,
-  getUsers
+  getUsers,
+  findOneUser
 }

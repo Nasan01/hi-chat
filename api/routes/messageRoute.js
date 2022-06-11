@@ -7,7 +7,7 @@ const authMiddleware = require("../middlewares/authMiddleware")
 router.use(authMiddleware.verify)
 
 router.get("/conversations", messageController.getConversationList)
-router.get("/conversation/message", messageController.getMessageFromConversation)
+router.get("/conversation/message/:idContact", messageController.getMessageFromConversation)
 router.post("/private", messageController.postPrivateMessage)
 
 module.exports = router

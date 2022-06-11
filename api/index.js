@@ -2,6 +2,7 @@ const express = require("express")
 const morgan = require("morgan")
 const cors = require("cors")
 const path = require("path")
+const http = require("http")
 
 const connectDB = require("./config/db")
 
@@ -22,14 +23,13 @@ app.use(cors())
 app.use(express.static(path.join(__dirname, "public")))
 
 
-const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`hi-chat API Backend Running On PORT ${PORT}`)
-})
+const server = http.createServer(app)
 
 // io socket
 
-const io = require("socket.io")(server)
-
+const io = require("socket.io")(server, {cors: {
+  allowedHeaders: "*"
+}})
 // add io to every request
 app.use(function (req, res, next) {
   req.io = io
@@ -43,4 +43,8 @@ app.use("/api/v1/message", messageRoute)
 
 app.use("/", (req, res) => {
   res.json({ msg: "hello" })
+})
+
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`hi-chat API Backend Running On PORT ${PORT}`)
 })

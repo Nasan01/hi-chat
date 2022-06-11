@@ -22,6 +22,7 @@ let upload = multer({ storage })
 
 router.post("/signup", upload.single("picture"), userController.signup)
 router.post("/signin", userController.signin)
-router.get("/", authMiddleware.verify,userController.getUsers)
+router.get("/", authMiddleware.verify, userController.getUsers)
+router.get("/:id", authMiddleware.verify, userController.findOneUser)
 
 module.exports = router
