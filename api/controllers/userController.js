@@ -12,6 +12,7 @@ const signup = async (req, res) => {
     const user = new User({ fullname, email, username, password, picture })
     // const user = new User({ fullname, email, username, password })
     await user.save()
+    req.io.sockets.emit("new_user", username)
     return res.status(201).json({ msg: "User created successfully !" })
   } catch (error) {
     console.log(error)

@@ -2,6 +2,7 @@
 
   import { mapGetters } from 'vuex'
   import { RouterLink } from 'vue-router'
+  import socket from '../config/socketConfig'
   import apiFetch from '../config/axiosConfig'
   import UserInfo from './user/UserInfo.vue'
   import SearchInput from './user/SearchInput.vue'
@@ -17,6 +18,7 @@
       return {
         usersMembers: [],
         usernameToSearch: "",
+        new_user: "",
       }
     },
 
@@ -32,6 +34,13 @@
 
     mounted() {
       this.fetchUsersMembers()
+      this.setNewUser()
+    },
+
+    watch: {
+      new_user() {
+        this.fetchUsersMembers()
+      }
     },
 
     methods: {
@@ -60,6 +69,12 @@
         } else {
           this.fetchUsersSearched(this.usernameToSearch)
         }
+      },
+
+      setNewUser() {
+        socket.on("new_user", (data) => {
+          this.new_user = data
+        })
       },
     }
 

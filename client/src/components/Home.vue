@@ -1,7 +1,7 @@
 <script>
 
   import { mapGetters } from "vuex"
-  import { RouterView } from "vue-router"
+  import { RouterView, RouterLink } from "vue-router"
   import ConversationList from "./chat/ConversationList.vue"
   import Profile from "./user/Profile.vue"
   import ChatContainer from "./chat/ChatContainer.vue"
@@ -35,7 +35,9 @@
   <div class="md:grid md:grid-cols-4">
     <div class="md:col-span-1 md:flex md:flex-col bg-gray-100 h-screen">
       <h1 class="text-center text-2xl text-indigo-400 p-3"> 
-        <i class="fas fa-message"></i> hi-chaty <i class="fa fa-message"></i> 
+        <RouterLink to="/">
+          <i class="fas fa-message"></i> hi-chaty <i class="fa fa-message"></i> 
+        </RouterLink>
       </h1>
       <div class="overflow-scroll scroll-m-0">
         <Suspense>
