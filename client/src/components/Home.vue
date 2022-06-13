@@ -53,7 +53,6 @@
       </div>
     </div>
     <div class="md:col-span-2">
-      <!-- <RouterView /> -->
       <RouterView />
     </div>
     <div class="md:col-span-1 md:flex md:flex-col md:items-center h-screen bg-gray-100">

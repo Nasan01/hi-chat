@@ -24,14 +24,6 @@
     },
 
     methods: {
-      async fetchUser() {
-        const res = await apiFetch.get("/api/v1/user", {
-          headers: {
-            Authorization: this.getToken
-          }
-        })
-        this.conversations = res.data
-      },
       async fetchConversations() {
         const res = await apiFetch.get("/api/v1/message/conversations", {
           headers: {
@@ -62,7 +54,6 @@
     },
 
     mounted() {
-      // this.fetchUser()
       this.fetchConversations()
       this.setLastMessage()
     },

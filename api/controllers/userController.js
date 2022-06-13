@@ -74,12 +74,16 @@ const signin = async (req, res) => {
 }
 
 const getUsers = (req, res) => {
-  User.find({ _id: {"$ne": req.user._id } }).then((users) => {
-    res.json(users)
-  }).catch(err => {
-    console.log(err)
-    res.json(err)
-  })
+  User.find({ _id: {"$ne": req.user._id } })
+    .limit(16)
+    .sort({ date: -1 })
+    .then((users) => {
+      res.json(users)
+    })
+    .catch(err => {
+      console.log(err)
+      res.json(err)
+    })
 }
 
 const findOneUser = (req, res) => {
