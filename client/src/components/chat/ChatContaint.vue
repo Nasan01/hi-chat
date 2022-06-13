@@ -15,7 +15,7 @@
 </script>
 
 <template>
-  <div class="overflow-scroll p-5" style="height: calc(100vh - 128px);">
+  <div class="overflow-scroll p-5" :class="$store.state.theme.theme.bg2" style="height: calc(100vh - 128px);">
     <div v-for="m in messages" :key="m._id" class="">
       <div v-if="m.from === $route.params.id" class="flex justify-start items-center overflow-clip">
         <img 

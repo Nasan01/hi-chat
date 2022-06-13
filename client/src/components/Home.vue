@@ -18,6 +18,7 @@
       if(!this.isLogged) {
         this.$router.push("/auth/signin")
       }
+      console.log(this.$store.state.theme.theme.bg1);
     },
 
     computed: {
@@ -33,7 +34,7 @@
 
 <template>
   <div class="md:grid md:grid-cols-4">
-    <div class="md:col-span-1 md:flex md:flex-col bg-gray-100 h-screen">
+    <div class="md:col-span-1 md:flex md:flex-col h-screen" :class="$store.state.theme.theme.bg1">
       <h1 class="text-center text-2xl text-indigo-400 p-3"> 
         <RouterLink to="/">
           <i class="fas fa-message"></i> hi-chaty <i class="fa fa-message"></i> 
@@ -57,7 +58,7 @@
     <div class="md:col-span-2">
       <RouterView />
     </div>
-    <div class="md:col-span-1 md:flex md:flex-col md:items-center h-screen bg-gray-100">
+    <div class="md:col-span-1 md:flex md:flex-col md:items-center h-screen" :class="$store.state.theme.theme.bg1">
       <Suspense>
         <Profile />
         <template #fallback>

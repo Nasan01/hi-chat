@@ -78,8 +78,8 @@
           class="h-16 w-16 rounded-full border-2 border-indigo-400"
         />
         <div class="w-4/5">
-          <h3 class="m-2 h-4 rounded font-semibold">{{ handleRecipient(r.recipientObj).fullname }}</h3>
-          <p class="m-2 h-3 rounded-md text-gray-600">
+          <h3 class="m-2 h-4 rounded font-semibold text-lg" :class="$store.state.theme.theme.text">{{ handleRecipient(r.recipientObj).fullname }}</h3>
+          <p class="m-2 h-3 rounded-md" :class="$store.state.theme.theme.text2">
             {{  spliceLastMessage(r.lastMessage)}}
           </p>
         </div>

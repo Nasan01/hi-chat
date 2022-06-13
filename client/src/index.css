@@ -7,3 +7,39 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.mine {
+  -webkit-appearance: none;
+}
+
+.check {
+  position: relative;
+  display: block;
+  width: 50px;
+  background-color: rgb(37, 37, 37);
+  cursor: pointer;
+  border-radius: 20px;
+  transition: ease-in .6s;
+}
+
+.check::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 2px;
+  left: 2px;
+  background-color: rgb(158, 145, 145);
+  border-radius: 50px;
+  transition: ease-in .6s;
+}
+
+.mine:checked ~ .check {
+  background-color: rgb(250, 227, 227);
+  box-shadow: 2px #272121;
+}
+
+.mine:checked ~ .check::after {
+  background-color: rgb(245, 230, 230);
+  transform:  translateX(30px);
+}

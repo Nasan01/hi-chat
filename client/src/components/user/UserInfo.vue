@@ -22,7 +22,7 @@
       class="h-16 w-16 rounded-full border-2 border-indigo-400"
     />
     <div class="w-4/5">
-      <h3 class="m-2 h-4 rounded font-semibold">{{ name }}</h3>
+      <h3 class="m-2 h-4 text-lg rounded font-semibold" :class="$store.state.theme.theme.text">{{ name }}</h3>
     </div>
   </div>
 </template>

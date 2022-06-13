@@ -95,19 +95,19 @@
 
 <template>
   <div class="h-screen flex flex-col">
-    <div class="h-16 p-3 bg-gray-100 flex justify-between items-center">
+    <div class="h-16 p-3 flex justify-between items-center" :class="$store.state.theme.theme.bg1">
       <img 
         :src="api_backend_url + '/images/' + userToChat.picture" 
         :alt="userToChat.fullname" 
         class="h-12 w-12 rounded-full border-2 border-indigo-400"
       />
-      <h4 class="font-semibold">{{ userToChat.fullname }} </h4>
+      <h4 class="font-semibold" :class="$store.state.theme.theme.text">{{ userToChat.fullname }} </h4>
       <div class="h-2 w-2 bg-green-500 rounded-full"></div>
     </div>
     <div>
       <ChatContaint :messages="messages" />
     </div>
-    <div class="h-16 p-3 bg-gray-100">
+    <div class="h-16 p-3" :class="$store.state.theme.theme.bg1">
       <form class="flex" @submit.prevent="onPostMessage">
         <p class="text-indigo-400 py-3">
           <i class="fa fa-smile"></i>

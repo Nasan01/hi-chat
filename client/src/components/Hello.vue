@@ -82,12 +82,12 @@
 
 </script>
 <template>
-  <div class="h-screen class flex flex-col overflow-scroll">
+  <div class="h-screen class flex flex-col overflow-scroll" :class="$store.state.theme.theme.bg2">
     <div class="p-3">
       <SearchInput @username-to-search="onSearchChange" />
     </div>
     <div v-if="isEmptyUsers" class="flex flex-col items-center justify-center text-center h-4/5">
-      <p class="text-gray-300"><i class="fa fa-search-minus fa-5x"></i><br>No Users</p>
+      <p :class="$store.state.theme.theme.text"><i class="fa fa-search-minus fa-5x"></i><br>No Users</p>
     </div>
     <div v-else>
       <div v-for="user in usersMembers" :key="user._id">
