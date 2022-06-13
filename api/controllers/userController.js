@@ -95,9 +95,28 @@ const findOneUser = (req, res) => {
   })
 }
 
+const findUserByName = (req, res) => {
+
+  const criteria = req.params.criteria
+
+  User.find({$or: [
+    { "username": { "$regex": ".*"+ criteria +".*" }},
+    { fullname: {"$regex": ".*"+ criteria +".*" }}
+  ]})
+    .then((users) => {
+      res.json(users)
+    })
+    .catch(err => {
+      console.log(err)
+      res.json(err)
+    })
+
+}
+
 module.exports = {
   signup,
   signin,
   getUsers,
-  findOneUser
+  findOneUser,
+  findUserByName
 }
